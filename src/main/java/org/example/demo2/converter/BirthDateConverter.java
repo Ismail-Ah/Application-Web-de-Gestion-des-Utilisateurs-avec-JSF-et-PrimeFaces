@@ -13,11 +13,21 @@ public class BirthDateConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        return LocalDate.parse(value, FORMATTER);
+        if (value == null || value.trim().isEmpty()) {
+            return null;
+        }
+        try {
+            return LocalDate.parse(value, FORMATTER);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid date format. Use DD/MM/YYYY (e.g., 11/12/2002).", e);
+        }
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
+        if (value == null) {
+            return "";
+        }
         return FORMATTER.format((LocalDate) value);
     }
 }

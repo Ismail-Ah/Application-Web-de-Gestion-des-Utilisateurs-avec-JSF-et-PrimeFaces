@@ -65,21 +65,18 @@ public class AddUserBean implements Serializable {
             em.persist(newUser);
             em.getTransaction().commit();
             System.out.println("User saved: " + newUser.getUsername());
+            if (userManagementBean != null) {
+                return userManagementBean.returnToAdminUsers();
+            } else {
+                System.err.println("UserManagementBean is null!");
+                return "adminUsers?faces-redirect=true";
+            }
         } catch (Exception e) {
             System.err.println("Error saving user: " + e.getMessage());
             em.getTransaction().rollback();
             return "error?faces-redirect=true";
         }
-
-        // Call UserManagementBean's method to refresh and navigate
-        if (userManagementBean != null) {
-            return userManagementBean.returnToAdminUsers();
-        } else {
-            System.err.println("UserManagementBean is null!");
-            return "adminUsers?faces-redirect=true"; // Fallback
-        }
     }
-
     // Getters and Setters
     public String getFirstName() { return firstName; }
     public void setFirstName(String firstName) { this.firstName = firstName; }

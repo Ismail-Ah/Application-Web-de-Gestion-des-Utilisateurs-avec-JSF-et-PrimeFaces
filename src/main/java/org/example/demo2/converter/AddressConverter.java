@@ -9,11 +9,11 @@ import jakarta.faces.convert.FacesConverter;
 public class AddressConverter implements Converter {
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        return value; // Store as-is, parse in bean if needed
+        return value; // Simple pass-through for now
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        return (String) value; // Display as-is
+        return value != null ? value.toString() : "";
     }
 }
