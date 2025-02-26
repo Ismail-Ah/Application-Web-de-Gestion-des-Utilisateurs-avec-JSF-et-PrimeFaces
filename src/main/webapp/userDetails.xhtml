@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>User Details</title>
+    <h:outputStylesheet>
+        /* Custom CSS for better styling */
+        .user-details-panel {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .details-grid {
+            margin-bottom: 20px;
+        }
+        .details-grid p:outputLabel {
+            font-weight: bold;
+        }
+        .logout-button {
+            margin-top: 20px;
+            text-align: right;
+        }
+    </h:outputStylesheet>
+</h:head>
+<h:body>
+    <h:form>
+        <p:panel header="Your Details" styleClass="user-details-panel">
+            <h:panelGrid columns="2" styleClass="details-grid">
+                <p:outputLabel value="Username:" />
+                <h:outputText value="#{loginBean.currentUser.username}" />
+                <p:outputLabel value="Role:" />
+                <h:outputText value="#{loginBean.currentUser.role}" />
+                <p:outputLabel value="First Name:" />
+                <h:outputText value="#{loginBean.currentUser.firstName}" />
+                <p:outputLabel value="Last Name:" />
+                <h:outputText value="#{loginBean.currentUser.lastName}" />
+                <p:outputLabel value="Birth Date:" />
+                <h:outputText value="#{loginBean.currentUser.birthDate}" converter="birthDateConverter" />
+                <p:outputLabel value="Account Balance:" />
+                <h:outputText value="#{loginBean.currentUser.accountBalance}" converter="balanceConverter" />
+                <p:outputLabel value="Address:" />
+                <h:outputText value="#{loginBean.currentUser.address}" converter="addressConverter" />
+                <p:outputLabel value="City:" />
+                <h:outputText value="#{loginBean.currentUser.city}" />
+                <p:outputLabel value="Postal Code:" />
+                <h:outputText value="#{loginBean.currentUser.postalCode}" />
+                <p:outputLabel value="Country:" />
+                <h:outputText value="#{loginBean.currentUser.country}" />
+            </h:panelGrid>
+            <div class="logout-button">
+                <p:commandButton value="Logout" action="login?faces-redirect=true" styleClass="ui-button-danger" />
+            </div>
+        </p:panel>
+    </h:form>
+</h:body>
+</html>

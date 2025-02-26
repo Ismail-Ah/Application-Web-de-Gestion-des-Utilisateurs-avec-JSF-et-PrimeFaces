@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Error</title>
+    <h:outputStylesheet>
+        /* Custom CSS for better styling */
+        .error-panel {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .error-message {
+            font-size: 18px;
+            color: #d9534f; /* Bootstrap's danger color for emphasis */
+            margin-bottom: 20px;
+        }
+        .back-button {
+            margin-top: 20px;
+        }
+    </h:outputStylesheet>
+</h:head>
+<h:body>
+    <h:form>
+        <p:panel header="Error" styleClass="error-panel">
+            <p:messages id="messages" showDetail="true" autoUpdate="true" />
+            <h:outputText value="Invalid login credentials or unauthorized access." styleClass="error-message" />
+            <p:commandButton value="Back to Login" action="login?faces-redirect=true" styleClass="back-button ui-button-primary" />
+        </p:panel>
+    </h:form>
+</h:body>
+</html>

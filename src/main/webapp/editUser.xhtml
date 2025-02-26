@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Edit User</title>
+    <h:outputStylesheet>
+        /* Custom CSS for better styling */
+        .edit-user-panel {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-grid {
+            margin-bottom: 20px;
+        }
+        .form-grid p:outputLabel {
+            font-weight: bold;
+        }
+        .form-actions {
+            text-align: right;
+            margin-top: 20px;
+        }
+        .form-actions .ui-button {
+            margin-left: 10px;
+        }
+    </h:outputStylesheet>
+</h:head>
+<h:body>
+    <h:form>
+        <p:panel header="Edit User" styleClass="edit-user-panel">
+            <p:messages id="messages" showDetail="true" autoUpdate="true" />
+            <h:panelGrid columns="2" styleClass="form-grid">
+                <p:outputLabel value="Username:" for="username" />
+                <p:inputText id="username" value="#{userManagementBean.selectedUser.username}" readonly="true" />
+                <p:outputLabel value="Password:" for="password" />
+                <p:password id="password" value="#{userManagementBean.selectedUser.password}" required="true" feedback="true" />
+                <p:outputLabel value="Role:" for="role" />
+                <p:inputText id="role" value="#{userManagementBean.selectedUser.role}" required="true" />
+                <p:outputLabel value="First Name:" for="firstName" />
+                <p:inputText id="firstName" value="#{userManagementBean.selectedUser.firstName}" required="true" />
+                <p:outputLabel value="Last Name:" for="lastName" />
+                <p:inputText id="lastName" value="#{userManagementBean.selectedUser.lastName}" required="true" />
+                <p:outputLabel value="Birth Date (DD/MM/YYYY):" for="birthDate" />
+                <p:calendar id="birthDate" value="#{userManagementBean.selectedUser.birthDate}" pattern="dd/MM/yyyy" required="true" />
+                <p:outputLabel value="Account Balance (MAD):" for="accountBalance" />
+                <p:inputNumber id="accountBalance" value="#{userManagementBean.selectedUser.accountBalance}" converter="balanceConverter" required="true" />
+                <p:outputLabel value="Address (Number - Street):" for="address" />
+                <p:inputText id="address" value="#{userManagementBean.selectedUser.address}" converter="addressConverter" required="true" />
+                <p:outputLabel value="City:" for="city" />
+                <p:inputText id="city" value="#{userManagementBean.selectedUser.city}" required="true" />
+                <p:outputLabel value="Postal Code:" for="postalCode" />
+                <p:inputText id="postalCode" value="#{userManagementBean.selectedUser.postalCode}" required="true" />
+                <p:outputLabel value="Country:" for="country" />
+                <p:inputText id="country" value="#{userManagementBean.selectedUser.country}" required="true" />
+            </h:panelGrid>
+            <div class="form-actions">
+                <p:commandButton value="Save" action="#{userManagementBean.saveEditedUser}" update="@form" styleClass="ui-button-primary" />
+                <p:commandButton value="Cancel" action="adminUsers?faces-redirect=true" immediate="true" styleClass="ui-button-secondary" />
+            </div>
+        </p:panel>
+    </h:form>
+</h:body>
+</html>

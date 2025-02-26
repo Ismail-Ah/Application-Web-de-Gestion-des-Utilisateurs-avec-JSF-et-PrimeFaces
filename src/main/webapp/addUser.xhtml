@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Add User</title>
+    <h:outputStylesheet>
+        /* Custom CSS for better styling */
+        .form-panel {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-grid {
+            margin-bottom: 20px;
+        }
+        .form-grid p:outputLabel {
+            font-weight: bold;
+        }
+        .form-actions {
+            text-align: right;
+        }
+    </h:outputStylesheet>
+</h:head>
+<h:body>
+    <h:form>
+        <p:panel header="Add New User" styleClass="form-panel">
+            <p:messages id="messages" showDetail="true" autoUpdate="true" />
+            <h:panelGrid columns="2" styleClass="form-grid">
+                <p:outputLabel value="First Name:" for="firstName" />
+                <p:inputText id="firstName" value="#{addUserBean.firstName}" required="true" />
+                <p:outputLabel value="Last Name:" for="lastName" />
+                <p:inputText id="lastName" value="#{addUserBean.lastName}" required="true" />
+                <p:outputLabel value="Birth Date (DD/MM/YYYY):" for="birthDate" />
+                <p:inputText id="birthDate" value="#{addUserBean.birthDate}" converter="birthDateConverter" required="true" />
+                <p:outputLabel value="Account Balance (MAD):" for="accountBalance" />
+                <p:inputNumber id="accountBalance" value="#{addUserBean.accountBalance}" converter="balanceConverter" required="true" />
+                <p:outputLabel value="Address (Number - Street):" for="address" />
+                <p:inputText id="address" value="#{addUserBean.address}" converter="addressConverter" required="true" />
+                <p:outputLabel value="City:" for="city" />
+                <p:inputText id="city" value="#{addUserBean.city}" required="true" />
+                <p:outputLabel value="Postal Code:" for="postalCode" />
+                <p:inputText id="postalCode" value="#{addUserBean.postalCode}" required="true" />
+                <p:outputLabel value="Country:" for="country" />
+                <p:inputText id="country" value="#{addUserBean.country}" required="true" />
+            </h:panelGrid>
+            <div class="form-actions">
+                <p:commandButton value="Save" action="#{addUserBean.saveUser}" update="@form" styleClass="ui-button-primary" />
+                <p:commandButton value="Reset" type="reset" styleClass="ui-button-secondary" />
+            </div>
+        </p:panel>
+    </h:form>
+</h:body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>User Management</title>
+    <h:outputStylesheet>
+        /* Custom CSS for better styling */
+        .user-management-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .data-table {
+            margin-bottom: 20px;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .add-user-button {
+            margin-top: 20px;
+        }
+    </h:outputStylesheet>
+</h:head>
+<h:body>
+    <div class="user-management-container">
+        <h:form>
+            <p:dataTable value="#{userManagementBean.users}" var="user" styleClass="data-table" paginator="true" rows="10"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" currentPageReportTemplate="Showing {startRecord} to {endRecord} of {totalRecords} users">
+                <p:column headerText="Username" sortBy="#{user.username}" filterBy="#{user.username}">
+                    <h:outputText value="#{user.username}" />
+                </p:column>
+                <p:column headerText="Role" sortBy="#{user.role}" filterBy="#{user.role}">
+                    <h:outputText value="#{user.role}" />
+                </p:column>
+                <p:column headerText="Actions">
+                    <div class="action-buttons">
+                        <p:commandButton value="Edit" action="#{userManagementBean.editUser(user)}" update="@form" styleClass="ui-button-warning" />
+                        <p:commandButton value="Delete" action="#{userManagementBean.deleteUser(user)}" update="@form" styleClass="ui-button-danger" />
+                    </div>
+                </p:column>
+            </p:dataTable>
+            <p:commandButton value="Add User" action="#{userManagementBean.addUser}" styleClass="add-user-button ui-button-primary" />
+        </h:form>
+    </div>
+</h:body>
+</html>
