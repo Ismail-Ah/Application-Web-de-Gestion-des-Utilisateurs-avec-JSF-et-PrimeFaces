@@ -29,7 +29,7 @@ Avant de lancer le projet, assurez-vous d’avoir installé :
 
 ### 1. Cloner le Projet
 ```bash
-git clone <repository-url>
+git clone https://github.com/Ismail-Ah/Application-Web-de-Gestion-des-Utilisateurs-avec-JSF-et-PrimeFaces.git
 cd <project-directory>
 ```
 
